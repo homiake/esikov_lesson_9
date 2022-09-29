@@ -60,18 +60,18 @@ while True:
         for row in range(3):
             for col in range(3):
                 if mas[row][col] == 'x':
-                    color = red
+                    color = (144,0,32)
                 elif mas[row][col] == 'o':
-                    color = green
+                    color = (71,167,106)
                 else:
-                    color = white
+                    color = ( 255,250,250)
                 x = col * size_block + (col + 1) * playing_field
                 y = row * size_block + (row + 1) * playing_field
                 pygame.draw.rect(screen, color, (x, y, size_block, size_block))
-                if color == red:
+                if color == (144,0,32):
                     pygame.draw.line(screen, white, (x + 3, y + 3), (x + size_block - 3, y + size_block - 3), 3)
                     pygame.draw.line(screen, white, (x + size_block - 3, y + 3), (x + 3, y + size_block - 3), 3)
-                elif color == green:
+                elif color == (71,167,106):
                     pygame.draw.circle(screen, white, (x + size_block // 2, y + size_block // 2), size_block // 2 - 3,
                                        3)
     if (count - 1) % 2 == 0:
@@ -81,7 +81,11 @@ while True:
 
     if game_over:
         screen.fill(black)
-        font = pygame.font.SysFont('stxingkai', 80)
+        font = pygame.font.SysFont('arial', 50)
+        if game_over == 'x':
+            game_over = 'Победитель - Х'
+        elif game_over == 'o':
+            game_over = 'Победитель - O'
         txt1 = font.render(game_over, True, white)
         text_rect = txt1.get_rect()
         text_x = screen.get_width() / 2 - text_rect.width / 2
